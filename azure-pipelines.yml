@@ -5,11 +5,17 @@ pool:
   name: Default
 
 steps:
-  - script: echo My first Azure Pipeline for Gradle project
-    displayName: 'Run a one-line script'
+  - task: UseJava@1
+    inputs:
+      versionSpec: '11'
+      jdkArchitecture: 'x64'
+    displayName: 'Set Java version'
+
+  - script: chmod +x ./gradlew
+    displayName: 'Make Gradle Wrapper Executable'
 
   - script: ./gradlew build
     displayName: 'Build with Gradle'
 
-  - script: java -jar build/gradle/wrapper/gradle-wrapper.jar
+  - script: java -jar gradle/wrapper/gradle-wrapper.jar
     displayName: 'Running jar'
