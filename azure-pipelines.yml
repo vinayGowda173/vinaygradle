@@ -1,21 +1,13 @@
 trigger:
-  - master
+- master
 
 pool:
   name: Default
 
 steps:
-  - task: UseJava@1
-    inputs:
-      versionSpec: '11'
-      jdkArchitecture: 'x64'
-    displayName: 'Set Java version'
-
-  - script: chmod +x ./gradlew
-    displayName: 'Make Gradle Wrapper Executable'
-
-  - script: ./gradlew build
-    displayName: 'Build with Gradle'
-
-  - script: java -jar gradle/wrapper/gradle-wrapper.jar
-    displayName: 'Running jar'
+- script: echo My Gradle Application
+  displayName: 'Run a one-line script'
+- script: gradle build
+  displayName: 'Building the gradle application'
+- script: gradle run
+  displayName: 'Running gradle application'
